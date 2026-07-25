@@ -156,6 +156,53 @@ a { text-decoration: none; color: inherit; }
 .benefit-card h3 { font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 0.6rem; }
 .benefit-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.65; }
 
+/* EXCLUSIVO — secção dedicada às 2 funcionalidades sem concorrência directa */
+.exclusive-section { background: var(--navy); position: relative; overflow: hidden; }
+.exclusive-section::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 800px 500px at 100% 0%, rgba(0,195,137,0.14), transparent 60%),
+    radial-gradient(ellipse 600px 450px at 0% 100%, rgba(0,195,137,0.07), transparent 60%);
+}
+.exclusive-section .section-eyebrow { color: var(--green); }
+.exclusive-section .section-title { color: white; }
+.exclusive-section .section-title em { color: var(--green); }
+.exclusive-section .section-sub { color: rgba(255,255,255,0.65); }
+.exclusive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; position: relative; z-index: 2; }
+.exclusive-card {
+  background: rgba(255,255,255,0.045); border: 1px solid var(--green-border); border-radius: 20px;
+  padding: 2rem;
+}
+.exclusive-badge {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: var(--green-dim); border: 1px solid var(--green-border); color: var(--green);
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+  padding: 0.35rem 0.85rem; border-radius: 100px; margin-bottom: 1.25rem;
+}
+.exclusive-card h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: white; margin-bottom: 0.6rem; font-weight: 700; }
+.exclusive-card p { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 1.5rem; }
+
+/* mockup: conversa gradual da IA */
+.mockup-chat { background: var(--navy-deep); border-radius: 14px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
+.mockup-msg { max-width: 82%; padding: 0.6rem 0.9rem; border-radius: 12px; font-size: 0.8rem; line-height: 1.45; }
+.mockup-msg.lead { align-self: flex-start; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.85); border-bottom-left-radius: 4px; }
+.mockup-msg.ia { align-self: flex-end; background: var(--green); color: var(--navy-deep); font-weight: 500; border-bottom-right-radius: 4px; }
+
+/* mockup: central de conversas do gestor */
+.mockup-hub { background: var(--navy-deep); border-radius: 14px; overflow: hidden; display: grid; grid-template-columns: 1fr 1.3fr; min-height: 210px; }
+.mockup-hub-list { border-right: 1px solid rgba(255,255,255,0.08); }
+.mockup-hub-item { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.7rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.mockup-hub-item .nome { font-size: 0.76rem; font-weight: 600; color: white; }
+.mockup-hub-item .estado { font-size: 0.66rem; }
+.mockup-hub-item.is-ia .estado { color: var(--green); }
+.mockup-hub-item.is-humano .estado { color: #7db8ff; }
+.mockup-hub-item.active { background: rgba(0,195,137,0.12); }
+.mockup-hub-detail { padding: 0.9rem; display: flex; flex-direction: column; gap: 0.45rem; }
+.mockup-hub-detail .head { font-size: 0.74rem; font-weight: 700; color: white; margin-bottom: 0.2rem; }
+.mockup-hub-detail .row { max-width: 92%; padding: 0.45rem 0.7rem; border-radius: 8px; font-size: 0.7rem; line-height: 1.4; }
+.mockup-hub-detail .row.lead { align-self: flex-start; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.8); }
+.mockup-hub-detail .row.ia { align-self: flex-end; background: var(--green); color: var(--navy-deep); }
+
 /* COMPARISON TABLE */
 .comparison-table { width: 100%; border-collapse: collapse; background: white; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
 .comparison-table th { background: var(--navy); color: white; padding: 1rem; font-size: 0.82rem; text-align: center; }
@@ -265,7 +312,7 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 900px) {
   .hero, .problem-grid, .story-grid, .modal-box { grid-template-columns: 1fr; }
   .hero-image, .problem-image, .story-image { min-height: 280px; height: 280px; }
-  .benefits-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .benefits-grid, .pricing-grid, .exclusive-grid { grid-template-columns: 1fr; }
   .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
   .nav-links { display: none; }
   .modal-image { display: none; }
@@ -360,8 +407,45 @@ a { text-decoration: none; color: inherit; }
     <div class="benefit-card"><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg></div><h3>Captura automática de leads</h3><p>Leads do Idealista e Imovirtual entram automaticamente no CRM, classificados por origem.</p></div>
     <div class="benefit-card"><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></div><h3>WhatsApp automático</h3><p>Follow-up programado que envia mensagens no timing certo. O corretor intervém só quando necessário.</p></div>
     <div class="benefit-card"><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg></div><h3>Agenda própria integrada</h3><p>Visitas, disponibilidade e confirmações automáticas — o corretor aparece sempre preparado.</p></div>
-    <div class="benefit-card"><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z"/><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"/></svg></div><h3>Conversa inteligente, não só uma resposta</h3><p>A IA faz perguntas graduais — zona, orçamento, urgência — antes de qualificar o lead, como uma conversa real, não uma mensagem única automática.</p></div>
-    <div class="benefit-card"><div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div><h3>Central de conversas para o gestor</h3><p>O admin da agência tem uma vista dedicada com todas as conversas de WhatsApp da equipa, filtráveis por corretor e estado, para acompanhar tudo em tempo real.</p></div>
+  </div>
+</section>
+
+<!-- EXCLUSIVO — as 2 funcionalidades sem concorrência directa em Portugal -->
+<section class="section exclusive-section">
+  <div class="section-eyebrow">Sem comparação no mercado português</div>
+  <h2 class="section-title">O diferencial que <em>nenhum concorrente tem</em></h2>
+  <p class="section-sub">Duas funcionalidades construídas de raiz para o mercado português — nenhum CRM imobiliário local as oferece hoje.</p>
+  <div class="exclusive-grid">
+    <div class="exclusive-card">
+      <span class="exclusive-badge">★ Exclusivo PropFlow</span>
+      <h3>Conversa inteligente, não só uma resposta</h3>
+      <p>A IA faz perguntas graduais — zona, orçamento, urgência — antes de qualificar o lead, como uma conversa real, não uma mensagem única automática.</p>
+      <div class="mockup-chat">
+        <div class="mockup-msg lead">Olá, procuro apartamento em Setúbal</div>
+        <div class="mockup-msg ia">Boa noite! Qual é a zona que mais lhe interessa?</div>
+        <div class="mockup-msg lead">O Viso, se possível</div>
+        <div class="mockup-msg ia">Óptima escolha. Qual o orçamento aproximado?</div>
+        <div class="mockup-msg lead">Até 250 mil euros</div>
+        <div class="mockup-msg ia">Perfeito, já tenho o necessário — um consultor contacta-o em breve 🙂</div>
+      </div>
+    </div>
+    <div class="exclusive-card">
+      <span class="exclusive-badge">★ Exclusivo PropFlow</span>
+      <h3>Central de conversas para o gestor</h3>
+      <p>O admin da agência tem uma vista dedicada com todas as conversas de WhatsApp da equipa, filtráveis por corretor e estado, para acompanhar tudo em tempo real.</p>
+      <div class="mockup-hub">
+        <div class="mockup-hub-list">
+          <div class="mockup-hub-item is-ia active"><span class="nome">Ana Costa</span><span class="estado">🤖 IA activa</span></div>
+          <div class="mockup-hub-item is-humano"><span class="nome">João Pereira</span><span class="estado">👤 Humano</span></div>
+          <div class="mockup-hub-item is-ia"><span class="nome">Marta Silva</span><span class="estado">🤖 IA activa</span></div>
+        </div>
+        <div class="mockup-hub-detail">
+          <div class="head">Ana Costa · Corretor: Sofia</div>
+          <div class="row lead">Estou a pensar no Viso</div>
+          <div class="row ia">Qual o orçamento aproximado?</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
